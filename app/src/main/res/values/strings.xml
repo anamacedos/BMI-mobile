@@ -5,5 +5,12 @@
     <string name="your_name">What\'s your name?</string>
     <string name="your_name_here">Your name here</string>
     <string name="next">Next</string>
-    <string name="Hi">hi</string>
+    <string name="Hi">Hi</string>
+    <string name="male">male</string>
+    <string name="female">female</string>
+    <string name="Age">age</string>
+    <string name="Height">height</string>
+    <string name="Weight">weight</string>
+    <string name="calculate">Calculate</string>
+    <string name="suporte_1">The name is required</string>
 </resources>
