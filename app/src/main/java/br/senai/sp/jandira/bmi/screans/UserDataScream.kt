@@ -20,11 +20,8 @@ import androidx.compose.material.icons.filled.Balance
 import androidx.compose.material.icons.filled.Height
 import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -45,10 +42,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import br.senai.sp.jandira.bmi.R
 
 @Composable
-fun UserDataScream(){
+fun UserDataScream(navController: NavHostController?) {
 
     var ageState = remember{
         mutableStateOf("")
@@ -85,11 +83,10 @@ fun UserDataScream(){
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(450.dp)
                     .weight(5f),
                 shape = RoundedCornerShape(
-                    topStart = 12.dp,
-                    topEnd = 12.dp,
+                    topStart = 18.dp,
+                    topEnd = 18.dp,
                 ),
                 colors = CardDefaults.cardColors(
                     containerColor = Color.White
@@ -208,7 +205,7 @@ fun UserDataScream(){
                                 Icon(
                                     imageVector = Icons.Default.Numbers,
                                     contentDescription = "",
-                                    tint = Color(0xffa6750a4)
+                                    tint = Color(0xff6750A4FA)
                                 )
                             },
                             keyboardOptions = KeyboardOptions(
@@ -273,7 +270,7 @@ fun UserDataScream(){
                                 Icon(
                                     imageVector = Icons.Default.Height,
                                     contentDescription = "",
-                                    tint = Color(0xffa6750a4)
+                                    tint = Color.Gray
                                 )
                             },
                             keyboardOptions = KeyboardOptions(
@@ -292,7 +289,10 @@ fun UserDataScream(){
                         )
                     }
                     Button(
-                        onClick = {},
+                        onClick = {
+                            navController?.navigate("result_screen")
+
+                        },
                         modifier = Modifier
                             .padding(horizontal = 16.dp)
                             .fillMaxWidth()
@@ -319,6 +319,6 @@ fun UserDataScream(){
 @Preview(showSystemUi = true)
 @Composable
 private fun UserDataScreamPreview() {
-    UserDataScream()
+    UserDataScream(navController = null)
 
 }

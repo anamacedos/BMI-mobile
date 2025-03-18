@@ -13,4 +13,5 @@
     <string name="Weight">weight</string>
     <string name="calculate">Calculate</string>
     <string name="suporte_1">The name is required</string>
+    <string name="bmi_result">Your BMI Result</string>
 </resources>
