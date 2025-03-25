@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screans
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -22,14 +23,29 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import br.senai.sp.jandira.bmi.model.BMIStatus
+import java.util.Locale
 
 @Composable
 fun BMIResultScreen(navController: NavHostController?) {
+
+
+    val context = LocalContext.current
+    val sharedUserFile = context
+        .getSharedPreferences("usuario", Context.MODE_PRIVATE)
+
+    val age = sharedUserFile.getInt("user_age", 0)
+    var height = sharedUserFile.getInt("user_height", 0).toDouble()
+    val weight = sharedUserFile.getInt("user_weight", 0)
+
+    height /=100
+    BMIStatus.OBESITY1
 
     Box(
         modifier = Modifier
@@ -125,7 +141,7 @@ fun BMIResultScreen(navController: NavHostController?) {
                                     fontSize = 20.sp
                                 )
                                 Text(
-                                    text = "50",
+                                    text = age.toString(),
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 22.sp
                                 )
@@ -144,7 +160,7 @@ fun BMIResultScreen(navController: NavHostController?) {
                                     fontSize = 20.sp
                                 )
                                 Text(
-                                    text = "97 Kg",
+                                    text = weight.toString(),
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 22.sp
                                 )
@@ -159,11 +175,15 @@ fun BMIResultScreen(navController: NavHostController?) {
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 Text(
-                                    text = "High",
+                                    text = "height",
                                     fontSize = 20.sp
                                 )
                                 Text(
-                                    text = "178 cm",
+                                    text = String.format(
+                                        Locale.getDefault(),
+                                        "%.2f", //antes do ponto qlqr coisa, depois 2 casa de    ponto flutuante
+                                        height
+                                    ),
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 22.sp
                                 )

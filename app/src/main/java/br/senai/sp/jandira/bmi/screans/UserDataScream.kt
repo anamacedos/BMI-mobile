@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.bmi.screans
 
+import android.content.Context
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,6 +27,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -48,6 +51,8 @@ import br.senai.sp.jandira.bmi.R
 @Composable
 fun UserDataScream(navController: NavHostController?) {
 
+
+
     var ageState = remember{
         mutableStateOf("")
     }
@@ -57,6 +62,12 @@ fun UserDataScream(navController: NavHostController?) {
     var heightState = remember {
         mutableStateOf("")
     }
+
+    //abrir o arquivo usuario.xml para recuperar o nome que o usuario digitou na tela anterior
+    val context = LocalContext.current
+    val sharedUserFile = context
+        .getSharedPreferences("usuario", Context.MODE_PRIVATE)
+    val userName = sharedUserFile.getString("user_name", "Name not found")
 
     Box(
         modifier = Modifier
@@ -72,7 +83,7 @@ fun UserDataScream(navController: NavHostController?) {
         ) {
 
             Text(
-                stringResource(R.string.Hi) + "!",
+                stringResource(R.string.Hi) + " $userName!",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White,
@@ -290,6 +301,12 @@ fun UserDataScream(navController: NavHostController?) {
                     }
                     Button(
                         onClick = {
+                            val editor = sharedUserFile.edit()
+                            editor.putInt("user_age", ageState.value.trim().toInt())
+                            editor.putInt("user_height", heightState.value.trim().toInt())
+                            editor.putInt("user_weight", weightState.value.trim().toInt())
+                            editor.apply()
+
                             navController?.navigate("result_screen")
 
                         },
