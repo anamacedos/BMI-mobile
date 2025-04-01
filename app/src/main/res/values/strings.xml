@@ -9,9 +9,21 @@
     <string name="male">male</string>
     <string name="female">female</string>
     <string name="Age">age</string>
-    <string name="Height">height</string>
+    <string name="Height">height in centimeters</string>
     <string name="Weight">weight</string>
     <string name="calculate">Calculate</string>
     <string name="suporte_1">The name is required</string>
     <string name="bmi_result">Your BMI Result</string>
+    <string name="underweight">You are below your ideal weight</string>
+    <string name="normalweight">You have normal body weight</string>
+    <string name="overweight">You are slightly overweight</string>
+    <string name="classs1_weight">You have class I Obesity</string>
+    <string name="classs2_weight">You have class II Obesity</string>
+    <string name="classs3_weight">You have class III Obesity</string>
+    <string name="under_weight_table">Underweight</string>
+    <string name="normal_weight_table">Normal</string>
+    <string name="over_weight_table">Overweight</string>
+    <string name="obesity1">Obesity Class I</string>
+    <string name="obesity2">Obesity Class II</string>
+    <string name="obesity3">Obesity Class III</string>
 </resources>
